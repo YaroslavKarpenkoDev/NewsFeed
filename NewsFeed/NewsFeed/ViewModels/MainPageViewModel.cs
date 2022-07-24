@@ -5,15 +5,60 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using NewsFeed.Services;
+using NewsFeed.Views;
 
 namespace NewsFeed.ViewModels
 {
 	public class MainPageViewModel : ViewModelBase
 	{
-		public MainPageViewModel(INavigationService navigationService)
-			: base(navigationService)
+		public MainPageViewModel(INavigationService navigationService, IValidationService validationService) : 
+			base(navigationService, validationService)
 		{
-			Title = "Main Page";
+			
 		}
+
+		#region Properties&Fields
+
+		public string UserLogin { get; set; }
+		public string UserPassword { get; set; }
+		
+		public bool IsValid { get; set; }
+
+		#endregion
+
+		#region Commands
+
+		public DelegateCommand AuthCommand => new DelegateCommand(Auth);
+		
+
+		#endregion
+
+		#region Lifecycle
+
+		public override void OnNavigatedTo(INavigationParameters parameters)
+		{
+			base.OnNavigatedTo(parameters);
+			IsValid = true;
+
+		}
+
+		#endregion
+
+		#region Methods
+
+		private async void Auth()
+		{
+			if (ValidationService.ValidateAuthData(UserLogin, UserPassword))
+			{
+				await NavigationService.NavigateAsync(nameof(NewsPage));
+			}
+			else
+			{
+				IsValid = false;
+			}
+		}
+
+		#endregion
 	}
 }

@@ -1,6 +1,8 @@
+using NewsFeed.Services;
 using NewsFeed.ViewModels;
 using NewsFeed.Views;
 using Prism;
+using Prism.DryIoc;
 using Prism.Ioc;
 using Xamarin.Essentials.Implementation;
 using Xamarin.Essentials.Interfaces;
@@ -8,7 +10,7 @@ using Xamarin.Forms;
 
 namespace NewsFeed
 {
-	public partial class App
+	public partial class App : PrismApplication
 	{
 		public App(IPlatformInitializer initializer)
 			: base(initializer)
@@ -19,15 +21,17 @@ namespace NewsFeed
 		{
 			InitializeComponent();
 
-			await NavigationService.NavigateAsync("NavigationPage/MainPage");
+			await NavigationService.NavigateAsync($"NavigationPage/{nameof(MainPage)}");
 		}
 
 		protected override void RegisterTypes(IContainerRegistry containerRegistry)
 		{
 			containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
+			containerRegistry.RegisterSingleton<IValidationService, ValidationServiceImplemetation>();
 
 			containerRegistry.RegisterForNavigation<NavigationPage>();
-			containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+			containerRegistry.RegisterForNavigation<MainPage>();
+			containerRegistry.RegisterForNavigation<NewsPage,NewsPageViewModel>();
 		}
 	}
 }

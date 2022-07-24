@@ -4,23 +4,20 @@ using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using NewsFeed.Services;
 
 namespace NewsFeed.ViewModels
 {
-	public class ViewModelBase : BindableBase, IInitialize, INavigationAware, IDestructible
+	public class ViewModelBase : BindableBase, IInitialize, 
+		INavigationAware, IDestructible
 	{
 		protected INavigationService NavigationService { get; private set; }
+		protected IValidationService ValidationService { get; private set; }
 
-		private string _title;
-		public string Title
-		{
-			get { return _title; }
-			set { SetProperty(ref _title, value); }
-		}
-
-		public ViewModelBase(INavigationService navigationService)
+		public ViewModelBase(INavigationService navigationService, IValidationService validationService)
 		{
 			NavigationService = navigationService;
+			ValidationService = validationService;
 		}
 
 		public virtual void Initialize(INavigationParameters parameters)
