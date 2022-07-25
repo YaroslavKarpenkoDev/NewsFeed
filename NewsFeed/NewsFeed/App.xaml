@@ -17,8 +17,9 @@
             <Color x:Key="HeaderTitleBlack">#131313</Color>
             <Color x:Key="TextLiteGray">#C3C5CC</Color>
             <Color x:Key="TextBlack">#1C1C1C</Color>
+            <Color x:Key="PageTitleBlack">#131313</Color>
             <Color x:Key="ErrorRed">#C73300</Color>
-
+            <Color x:Key="LineSeparatorGray">#ECECEC</Color>
             <!-- Fonts -->
 
             <OnPlatform x:Key="SFProDisplay" x:TypeArguments="x:String">
@@ -49,6 +50,7 @@
                 <Setter Property="BackgroundColor" Value="{StaticResource MainDark}" />
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextTransform" Value="None" />
             </Style>
 
             <!-- Entries -->
@@ -58,14 +60,28 @@
                 <Setter Property="TextColor" Value="{StaticResource MainDark}" />
                 <Setter Property="PlaceholderColor" Value="{StaticResource TextLiteGray}" />
             </Style>
+            
+            <Style TargetType="Entry" x:Key="SearchEntryStyle"
+                   BasedOn="{StaticResource AuthEntryStyle}">
+                <Setter Property="TextColor" Value="{StaticResource TextBlack}"/>
+            </Style>
 
             <!-- Labels -->
-            <Style TargetType="Entry" x:Key="ErrorLabelStyle">
+            <Style TargetType="Label" x:Key="ErrorLabelStyle">
                 <Setter Property="FontSize" Value="14" />
                 <Setter Property="FontFamily" Value="{StaticResource SFProDisplay}" />
                 <Setter Property="TextColor" Value="{StaticResource ErrorRed}" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
                 <Setter Property="HorizontalOptions" Value="Center" />
+            </Style>
+            
+            <Style TargetType="Label" x:Key="PageTitleLabelStyle">
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontFamily" Value="{StaticResource SFProDisplay}" />
+                <Setter Property="TextColor" Value="{StaticResource PageTitleBlack}" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="FontAttributes" Value="Bold" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>

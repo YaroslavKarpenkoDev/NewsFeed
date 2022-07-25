@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NewsFeed.Services;
+using NewsFeed.Utils.StaticModels;
 using NewsFeed.Views;
 
 namespace NewsFeed.ViewModels
@@ -39,6 +40,8 @@ namespace NewsFeed.ViewModels
 		public override void OnNavigatedTo(INavigationParameters parameters)
 		{
 			base.OnNavigatedTo(parameters);
+			UserLogin = UserAuthInfo.Login;
+			UserPassword = UserAuthInfo.Password;
 			IsValid = true;
 
 		}

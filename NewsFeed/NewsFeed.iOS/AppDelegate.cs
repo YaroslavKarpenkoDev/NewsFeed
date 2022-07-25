@@ -22,6 +22,7 @@ namespace NewsFeed.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            Sharpnado.Shades.iOS.iOSShadowsRenderer.Initialize();
             LoadApplication(new App(new iOSInitializer()));
 
             return base.FinishedLaunching(app, options);

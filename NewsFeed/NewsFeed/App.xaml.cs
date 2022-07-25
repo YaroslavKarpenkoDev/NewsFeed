@@ -15,6 +15,7 @@ namespace NewsFeed
 		public App(IPlatformInitializer initializer)
 			: base(initializer)
 		{
+			Sharpnado.Shades.Initializer.Initialize(loggerEnable: false);
 		}
 
 		protected override async void OnInitialized()

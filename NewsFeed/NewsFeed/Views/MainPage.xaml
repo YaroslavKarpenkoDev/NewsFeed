@@ -3,15 +3,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:resources="clr-namespace:NewsFeed.Resources;assembly=NewsFeed"
+             xmlns:controls="clr-namespace:NewsFeed.Controls;assembly=NewsFeed"
              NavigationPage.HasNavigationBar="False"
              x:Class="NewsFeed.Views.MainPage"
              BackgroundColor="{StaticResource White}">
-    <StackLayout BackgroundColor="{StaticResource White}"
-                 Padding="12,16">
         <Grid RowDefinitions="*,*" 
               BackgroundColor="{StaticResource White}" 
               RowSpacing="0"
-              VerticalOptions="CenterAndExpand">
+              Padding="12,16"
+              VerticalOptions="Center">
             
             <StackLayout Grid.Row="0"
                          BackgroundColor="{StaticResource White}"
@@ -19,18 +19,18 @@
                          Spacing="21">
 
                 <Frame Style="{StaticResource AuthFrameStyle}">
-                    <Entry Placeholder="{x:Static resources:Texts.Email}"
+                    <controls:BorderlessEntry Placeholder="{x:Static resources:Texts.Email}"
                            Style="{StaticResource AuthEntryStyle}"
                            Keyboard="Email"
                            Text="{Binding UserLogin}">
-                        <Entry.Triggers>
-                            <DataTrigger TargetType="Entry"
+                        <controls:BorderlessEntry.Triggers>
+                            <DataTrigger TargetType="controls:BorderlessEntry"
                                          Binding="{Binding IsValid}"
                                          Value="False">
                                 <Setter Property="TextColor" Value="{StaticResource ErrorRed}" />
                             </DataTrigger>
-                        </Entry.Triggers>
-                    </Entry>
+                        </controls:BorderlessEntry.Triggers>
+                    </controls:BorderlessEntry>
                     <Frame.Triggers>
                         <DataTrigger TargetType="Frame"
                                      Binding="{Binding IsValid}"
@@ -40,19 +40,19 @@
                     </Frame.Triggers>
                 </Frame>
                 <Frame Style="{StaticResource AuthFrameStyle}">
-                    <Entry Placeholder="{x:Static resources:Texts.Password}"
-                           Style="{StaticResource AuthEntryStyle}"
-                           Keyboard="Default"
-                           IsPassword="True"
-                           Text="{Binding UserPassword}">
-                        <Entry.Triggers>
-                            <DataTrigger TargetType="Entry"
+                    <controls:BorderlessEntry Placeholder="{x:Static resources:Texts.Password}"
+                                              Style="{StaticResource AuthEntryStyle}"
+                                              Keyboard="Default"
+                                              IsPassword="True"
+                                              Text="{Binding UserPassword}">
+                        <controls:BorderlessEntry.Triggers>
+                            <DataTrigger TargetType="controls:BorderlessEntry"
                                          Binding="{Binding IsValid}"
                                          Value="False">
                                 <Setter Property="TextColor" Value="{StaticResource ErrorRed}" />
                             </DataTrigger>
-                        </Entry.Triggers>
-                    </Entry>
+                        </controls:BorderlessEntry.Triggers>
+                    </controls:BorderlessEntry>
                     <Frame.Triggers>
                         <DataTrigger TargetType="Frame"
                                      Binding="{Binding IsValid}"
@@ -70,7 +70,7 @@
                    IsVisible="{Binding IsValid, Converter={StaticResource InverseBoolConverter}}"
                    Margin="0,31,0,0"
                    VerticalOptions="Start"
+                   HorizontalOptions="Center"
                    Text="{x:Static resources:Texts.ErrorMessage}" />
         </Grid>
-    </StackLayout>
 </ContentPage>

@@ -2,12 +2,92 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:resources="clr-namespace:NewsFeed.Resources;assembly=NewsFeed"
+             xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:controls="clr-namespace:NewsFeed.Controls;assembly=NewsFeed"
+             xmlns:sh="http://sharpnado.com"
+             NavigationPage.HasNavigationBar="True"
+             NavigationPage.HasBackButton="False"
+             BackgroundColor="White"
              x:Class="NewsFeed.Views.NewsPage">
+    <NavigationPage.TitleView>
+        <StackLayout BackgroundColor="{StaticResource White}"
+                     HorizontalOptions="FillAndExpand"
+                     VerticalOptions="FillAndExpand">
+            <Label Text="{x:Static resources:Texts.News}"
+                   Style="{StaticResource PageTitleLabelStyle}" />
+        </StackLayout>
+    </NavigationPage.TitleView>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Hello, world!"
-                   VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand" />
+            <BoxView HorizontalOptions="Fill"
+                     VerticalOptions="Start"
+                     HeightRequest="1"
+                     BackgroundColor="{StaticResource LineSeparatorGray}"
+                     IsVisible="{OnPlatform iOS=False}" />
+            <StackLayout Padding="19,0"
+                         BackgroundColor="{StaticResource White}">
+
+                <Grid ColumnDefinitions="Auto,*"
+                      HorizontalOptions="Fill"
+                      VerticalOptions="Start"
+                      BackgroundColor="White"
+                      ColumnSpacing="17"
+                      Margin="0,17,0,0">
+                    <svg:SvgCachedImage Grid.Column="0" Source="search.svg"
+                                        HeightRequest="17.5"
+                                        WidthRequest="17.5" />
+                    <StackLayout Grid.Column="1"
+                                 BackgroundColor="{StaticResource White}"
+                                 Spacing="0">
+                        <controls:BorderlessEntry Margin="5,0"
+                                                  Style="{StaticResource SearchEntryStyle}" />
+                        <BoxView HorizontalOptions="Fill"
+                                 HeightRequest="1"
+                                 BackgroundColor="{StaticResource MainDark}" />
+                    </StackLayout>
+                </Grid>
+                <sh:Shadows Margin="0"
+                            x:Name="Shadow"
+                            CornerRadius="0">
+                    <sh:Shadows.Shades>
+                        <sh:ImmutableShades>
+                            <sh:Shade
+                                BlurRadius="10"
+                                Opacity="1"
+                                Offset="0,2"
+                                Color="LightGray" />
+                        </sh:ImmutableShades>
+                    </sh:Shadows.Shades>
+                    <Frame HasShadow="False"
+                           Margin="20">
+                        <Label Text="adscadcadsc ln"></Label>
+                    </Frame>
+                </sh:Shadows>
+                <CollectionView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <sh:Shadows Margin="0"
+                                        x:Name="Shadow"
+                                        CornerRadius="0">
+                                <sh:Shadows.Shades>
+                                    <sh:ImmutableShades>
+                                        <sh:Shade
+                                            BlurRadius="10"
+                                            Opacity="1"
+                                            Offset="0,2"
+                                            Color="LightGray" />
+                                    </sh:ImmutableShades>
+                                </sh:Shadows.Shades>
+                                <Frame HasShadow="False"
+                                       Margin="20">
+                                    <Label Text="adscadcadsc ln"></Label>
+                                </Frame>
+                            </sh:Shadows>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
