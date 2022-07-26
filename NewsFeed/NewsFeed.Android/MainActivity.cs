@@ -17,8 +17,8 @@ namespace NewsFeed.Droid
         {
 
             base.OnCreate(savedInstanceState);
-            // Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US"); 
-            // Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US"); 
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App(new AndroidInitializer()));
         }
