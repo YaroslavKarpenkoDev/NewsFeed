@@ -1,3 +1,5 @@
+using System.Globalization;
+using System.Threading;
 using NewsFeed.Services;
 using NewsFeed.ViewModels;
 using NewsFeed.Views;
@@ -21,7 +23,6 @@ namespace NewsFeed
 		protected override async void OnInitialized()
 		{
 			InitializeComponent();
-
 			await NavigationService.NavigateAsync($"NavigationPage/{nameof(MainPage)}");
 		}
 
@@ -29,10 +30,12 @@ namespace NewsFeed
 		{
 			containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
 			containerRegistry.RegisterSingleton<IValidationService, ValidationServiceImplemetation>();
+			containerRegistry.RegisterSingleton<IWebApiService, WebApiServiceImplementation>();
 
 			containerRegistry.RegisterForNavigation<NavigationPage>();
 			containerRegistry.RegisterForNavigation<MainPage>();
 			containerRegistry.RegisterForNavigation<NewsPage,NewsPageViewModel>();
+			containerRegistry.RegisterForNavigation<NewsDetailPage,NewsDetailPageViewModel>();
 		}
 	}
 }

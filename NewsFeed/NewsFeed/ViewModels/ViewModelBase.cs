@@ -13,11 +13,15 @@ namespace NewsFeed.ViewModels
 	{
 		protected INavigationService NavigationService { get; private set; }
 		protected IValidationService ValidationService { get; private set; }
+		
+		protected IWebApiService WebApiService { get; private set; }
 
-		public ViewModelBase(INavigationService navigationService, IValidationService validationService)
+		public ViewModelBase(INavigationService navigationService, IValidationService validationService, 
+			IWebApiService webApiService)
 		{
 			NavigationService = navigationService;
 			ValidationService = validationService;
+			WebApiService = webApiService;
 		}
 
 		public virtual void Initialize(INavigationParameters parameters)

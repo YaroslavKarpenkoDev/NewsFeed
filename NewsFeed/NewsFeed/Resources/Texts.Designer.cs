@@ -74,5 +74,11 @@ namespace NewsFeed.Resources {
                 return ResourceManager.GetString("News", resourceCulture);
             }
         }
+        
+        internal static string ReadFull {
+            get {
+                return ResourceManager.GetString("ReadFull", resourceCulture);
+            }
+        }
     }
 }

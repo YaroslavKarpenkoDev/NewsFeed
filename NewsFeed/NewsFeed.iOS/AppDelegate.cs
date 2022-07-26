@@ -1,4 +1,6 @@
-﻿using Foundation;
+﻿using System.Globalization;
+using System.Threading;
+using Foundation;
 using Prism;
 using Prism.Ioc;
 using UIKit;
@@ -24,7 +26,8 @@ namespace NewsFeed.iOS
             global::Xamarin.Forms.Forms.Init();
             Sharpnado.Shades.iOS.iOSShadowsRenderer.Initialize();
             LoadApplication(new App(new iOSInitializer()));
-
+            // Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US"); 
+            // Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
             return base.FinishedLaunching(app, options);
         }
     }

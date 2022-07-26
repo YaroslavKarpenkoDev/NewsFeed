@@ -34,4 +34,7 @@
     <data name="News" xml:space="preserve">
         <value>Новости</value>
     </data>
+    <data name="ReadFull" xml:space="preserve">
+        <value>Читать полностью</value>
+    </data>
 </root>

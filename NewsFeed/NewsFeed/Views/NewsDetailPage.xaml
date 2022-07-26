@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:resources="clr-namespace:NewsFeed.Resources;assembly=NewsFeed"
+             NavigationPage.HasBackButton="False"
+             x:Class="NewsFeed.Views.NewsDetailPage">
+    <NavigationPage.TitleView>
+        <StackLayout BackgroundColor="{StaticResource White}"
+                     HorizontalOptions="FillAndExpand"
+                     VerticalOptions="FillAndExpand">
+            <Label Text="{x:Static resources:Texts.News}"
+                   Style="{StaticResource PageTitleLabelStyle}" />
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding BackNavigationCommand}"/>
+            </StackLayout.GestureRecognizers>
+        </StackLayout>
+    </NavigationPage.TitleView>
+        <ScrollView>
+            <StackLayout Spacing="7">
+                <Image Source="{Binding NewsDetail.UrlToImage}"
+                       Aspect="AspectFill" />
+                
+                <StackLayout Padding="14" IsClippedToBounds="True"
+                             Spacing="10"> 
+                    <Grid ColumnDefinitions="*,*">
+                        <Label Grid.Column="0" 
+                               Text="{Binding NewsDetail.Author}"
+                               Style="{StaticResource AuthorNameLabelStyle}"/>
+                        <Label Grid.Column="1"
+                               Text="{Binding NewsDetail.StringDate}"
+                               Style="{StaticResource DateLabelStyle}"/>
+                    </Grid>
+                    <Label Text="{Binding NewsDetail.Title}"
+                           Style="{StaticResource NewsTitleLabelStyle}"/>
+                    <Label Text="{Binding NewsDetail.Description}"
+                           Style="{StaticResource AuthorNameLabelStyle}"/>
+                </StackLayout>
+                
+                <Button Style="{StaticResource MainButtonStyle}"
+                        VerticalOptions="EndAndExpand"
+                        Margin="12,16"
+                        Text="{x:Static resources:Texts.ReadFull}"
+                        Command="{Binding ToFullVersionCommand}"/>
+            </StackLayout>
+        </ScrollView>
+</ContentPage>

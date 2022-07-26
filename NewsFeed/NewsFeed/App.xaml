@@ -83,6 +83,30 @@
                 <Setter Property="HorizontalOptions" Value="Center" />
                 <Setter Property="FontAttributes" Value="Bold" />
             </Style>
+            
+            <Style TargetType="Label" x:Key="NewsTitleLabelStyle">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="FontFamily" Value="{StaticResource SFProDisplay}" />
+                <Setter Property="TextColor" Value="{StaticResource TextBlack}" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+            
+            <Style TargetType="Label" x:Key="AuthorNameLabelStyle">
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="FontFamily" Value="{StaticResource SFProDisplay}" />
+                <Setter Property="TextColor" Value="{StaticResource MainDark}" />
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="FontAttributes" Value="None" />
+            </Style>
+            
+            <Style TargetType="Label" x:Key="DateLabelStyle" 
+                   BasedOn="{StaticResource AuthorNameLabelStyle}">
+                <Setter Property="TextColor" Value="{StaticResource TextLiteGray}" />
+                <Setter Property="HorizontalOptions" Value="End" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </prism:PrismApplication>

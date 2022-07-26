@@ -13,8 +13,8 @@ namespace NewsFeed.ViewModels
 {
 	public class MainPageViewModel : ViewModelBase
 	{
-		public MainPageViewModel(INavigationService navigationService, IValidationService validationService) : 
-			base(navigationService, validationService)
+		public MainPageViewModel(INavigationService navigationService, IValidationService validationService, IWebApiService webApiService) : 
+			base(navigationService, validationService, webApiService)
 		{
 			
 		}

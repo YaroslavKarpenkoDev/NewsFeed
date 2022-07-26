@@ -19,75 +19,92 @@
         </StackLayout>
     </NavigationPage.TitleView>
     <ContentPage.Content>
-        <StackLayout>
-            <BoxView HorizontalOptions="Fill"
-                     VerticalOptions="Start"
-                     HeightRequest="1"
-                     BackgroundColor="{StaticResource LineSeparatorGray}"
-                     IsVisible="{OnPlatform iOS=False}" />
-            <StackLayout Padding="19,0"
-                         BackgroundColor="{StaticResource White}">
+        <Grid>
+            <StackLayout>
+                <BoxView HorizontalOptions="Fill"
+                         VerticalOptions="Start"
+                         HeightRequest="1"
+                         BackgroundColor="{StaticResource LineSeparatorGray}"
+                         IsVisible="{OnPlatform iOS=False}" />
+                <StackLayout Padding="19,0"
+                             BackgroundColor="{StaticResource White}">
 
-                <Grid ColumnDefinitions="Auto,*"
-                      HorizontalOptions="Fill"
-                      VerticalOptions="Start"
-                      BackgroundColor="White"
-                      ColumnSpacing="17"
-                      Margin="0,17,0,0">
-                    <svg:SvgCachedImage Grid.Column="0" Source="search.svg"
-                                        HeightRequest="17.5"
-                                        WidthRequest="17.5" />
-                    <StackLayout Grid.Column="1"
-                                 BackgroundColor="{StaticResource White}"
-                                 Spacing="0">
-                        <controls:BorderlessEntry Margin="5,0"
-                                                  Style="{StaticResource SearchEntryStyle}" />
-                        <BoxView HorizontalOptions="Fill"
-                                 HeightRequest="1"
-                                 BackgroundColor="{StaticResource MainDark}" />
-                    </StackLayout>
-                </Grid>
-                <sh:Shadows Margin="0"
-                            x:Name="Shadow"
-                            CornerRadius="0">
-                    <sh:Shadows.Shades>
-                        <sh:ImmutableShades>
-                            <sh:Shade
-                                BlurRadius="10"
-                                Opacity="1"
-                                Offset="0,2"
-                                Color="LightGray" />
-                        </sh:ImmutableShades>
-                    </sh:Shadows.Shades>
-                    <Frame HasShadow="False"
-                           Margin="20">
-                        <Label Text="adscadcadsc ln"></Label>
-                    </Frame>
-                </sh:Shadows>
-                <CollectionView>
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <sh:Shadows Margin="0"
-                                        x:Name="Shadow"
-                                        CornerRadius="0">
-                                <sh:Shadows.Shades>
-                                    <sh:ImmutableShades>
-                                        <sh:Shade
-                                            BlurRadius="10"
-                                            Opacity="1"
-                                            Offset="0,2"
-                                            Color="LightGray" />
-                                    </sh:ImmutableShades>
-                                </sh:Shadows.Shades>
-                                <Frame HasShadow="False"
-                                       Margin="20">
-                                    <Label Text="adscadcadsc ln"></Label>
-                                </Frame>
-                            </sh:Shadows>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
+                    <Grid ColumnDefinitions="Auto,*"
+                          HorizontalOptions="Fill"
+                          VerticalOptions="StartAndExpand"
+                          BackgroundColor="White"
+                          ColumnSpacing="17"
+                          Margin="0,17,0,0">
+                        <svg:SvgCachedImage Grid.Column="0" Source="search.svg"
+                                            HeightRequest="17.5"
+                                            WidthRequest="17.5" />
+                        <StackLayout Grid.Column="1"
+                                     BackgroundColor="{StaticResource White}"
+                                     Spacing="0">
+                            <controls:BorderlessEntry Margin="5,0"
+                                                      Text="{Binding SearchText, Mode=TwoWay}"
+                                                      Style="{StaticResource SearchEntryStyle}" />
+                            <BoxView HorizontalOptions="Fill"
+                                     HeightRequest="1"
+                                     BackgroundColor="{StaticResource MainDark}" />
+                        </StackLayout>
+                    </Grid>
+                    <CollectionView ItemsSource="{Binding NewsList}"
+                                    HorizontalOptions="FillAndExpand"
+                                    Margin="0,24,0,0"
+                                    SelectionMode="Single"
+                                    SelectedItem="{Binding SelectedItem}"
+                                    SelectionChangedCommand="{Binding ToDetailsPageCommand}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <sh:Shadows Margin="0"
+                                            x:Name="Shadow"
+                                            CornerRadius="8">
+                                    <sh:Shadows.Shades>
+                                        <sh:ImmutableShades>
+                                            <sh:Shade
+                                                BlurRadius="10"
+                                                Opacity="1"
+                                                Offset="0,2"
+                                                Color="LightGray" />
+                                        </sh:ImmutableShades>
+                                    </sh:Shadows.Shades>
+                                    <Frame HasShadow="False"
+                                           HorizontalOptions="FillAndExpand"
+                                           Padding="0"
+                                           CornerRadius="8"
+                                           IsClippedToBounds="True"
+                                           Margin="0,0,0,20">
+                                        <StackLayout Padding="0" IsClippedToBounds="True"
+                                                     Spacing="5">
+                                            <StackLayout Padding="10" IsClippedToBounds="True"
+                                                         Spacing="5">
+                                                <Grid ColumnDefinitions="*,*">
+                                                    <Label Grid.Column="0"
+                                                           Text="{Binding Author}"
+                                                           Style="{StaticResource AuthorNameLabelStyle}" />
+                                                    <Label Grid.Column="1"
+                                                           Text="{Binding StringDate}"
+                                                           Style="{StaticResource DateLabelStyle}" />
+                                                </Grid>
+                                                <Label Text="{Binding Title}"
+                                                       Style="{StaticResource NewsTitleLabelStyle}" />
+                                            </StackLayout>
+
+                                            <Image Source="{Binding UrlToImage}"
+                                                   Aspect="AspectFill" />
+                                        </StackLayout>
+                                    </Frame>
+                                </sh:Shadows>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+
             </StackLayout>
-        </StackLayout>
+            <ActivityIndicator IsRunning="{Binding IsLoading}" 
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="CenterAndExpand"/>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
